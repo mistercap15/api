@@ -1,6 +1,6 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -24,7 +24,7 @@ db.once('open', () => {
 });
 
 const ProductSchema = new mongoose.Schema({
-  id: { type: Number, unique: true },
+  id: { type: Number, unique: true }, // Define id as a unique field
   title: String,
   price: Number,
   description: String,
@@ -38,7 +38,7 @@ const ProductSchema = new mongoose.Schema({
 
 const Product = mongoose.model('Product', ProductSchema);
 
-app.use('/api/products', require('./routes/products')(Product));
+app.use('/products', require('./routes/products')(Product));
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
